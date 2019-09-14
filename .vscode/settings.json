@@ -3,5 +3,5 @@
   "editor.formatOnSave": true,
   "javascript.format.enable": false,
   "javascript.validate.enable": false,
-  "eslint.autoFixOnSave": false
+  "eslint.autoFixOnSave": true
 }
