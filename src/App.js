@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Header from "components/Header";
 
 const apiUrl = "/api/problems/all/";
 
@@ -11,7 +12,11 @@ function App() {
         setData(data);
       });
   }, []);
-  return <div className="App">{JSON.stringify(data)}</div>;
+  return (
+    <div className="App">
+      <Header />
+    </div>
+  );
 }
 
 export default App;
