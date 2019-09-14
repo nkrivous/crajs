@@ -15,13 +15,13 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "git add"
     }
   },
   "lint-staged": {
     "**/*.{js,scss}": [
       "eslint --fix",
-      "git add ."
+      "git add"
     ]
   },
   "browserslist": {
