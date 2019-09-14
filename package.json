@@ -19,7 +19,7 @@
     }
   },
   "lint-staged": {
-    "**/*.{js,json,scss}": [
+    "**/*.{js,scss}": [
       "eslint --fix",
       "git add"
     ]
