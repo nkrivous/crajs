@@ -1,5 +1,5 @@
 import Header from "components/Header";
-import { ModelMap } from "components/ModelMap";
+import { RendersMapObject } from "components/RendersMapObject";
 import React, { useEffect, useState } from "react";
 
 const apiUrl = "/api/problems/all/";
@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <ModelMap />
+      <RendersMapObject />
     </div>
   );
 }

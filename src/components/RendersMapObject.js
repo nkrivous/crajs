@@ -6,7 +6,7 @@ const initialState = [
   [3, "three"]
 ];
 
-export class ModelMap extends React.Component {
+export class RendersMapObject extends React.Component {
   state = {
     model: new Map(initialState)
   };
