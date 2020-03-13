@@ -7,7 +7,9 @@ import {
   BindInRender,
   FunctionComponent,
   FunctionComponentWithCallback,
-  FunctionComponentWithCallbackPrevState
+  FunctionComponentWithCallbackPrevState,
+  MockRender,
+  RenderChildren
 } from "./CountOfRenders";
 
 describe("Count of renders", () => {
@@ -24,6 +26,22 @@ describe("Count of renders", () => {
   test("BindInConstructor", () => {
     const onRender = jest.fn();
     const { getByRole } = render(<BindInConstructor onRender={onRender} />);
+    expect(onRender.mock.calls.length).toBe(1);
+
+    fireEvent.click(getByRole("button"));
+
+    expect(onRender.mock.calls.length).toBe(1);
+  });
+
+  test("RenderChildren", () => {
+    const onRender = jest.fn();
+    const { getByRole } = render(
+      <RenderChildren onRender={onRender}>
+        {(onRender, onClick) => (
+          <MockRender onRender={onRender} onClick={onClick} />
+        )}
+      </RenderChildren>
+    );
     expect(onRender.mock.calls.length).toBe(1);
 
     fireEvent.click(getByRole("button"));

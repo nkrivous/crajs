@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 
-class MockRender extends React.PureComponent {
+export class MockRender extends React.PureComponent {
   render() {
     const { onRender, onClick } = this.props;
     onRender();
@@ -44,6 +44,25 @@ export class BindInConstructor extends React.Component {
   render() {
     const { onRender } = this.props;
     return <MockRender onRender={onRender} onClick={this.handleClick} />;
+  }
+}
+
+export class RenderChildren extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState(state => state.count + 1);
+  }
+
+  render() {
+    const { onRender } = this.props;
+    return this.props.children(onRender, this.handleClick);
   }
 }
 
