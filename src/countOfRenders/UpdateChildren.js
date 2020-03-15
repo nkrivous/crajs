@@ -1,12 +1,6 @@
 import React, { useCallback, useState } from "react";
 
-export class MockRender extends React.PureComponent {
-  render() {
-    const { onRender, onClick } = this.props;
-    onRender();
-    return <>{onClick && <button onClick={onClick}>Click</button>}</>;
-  }
-}
+import { MockRender } from "./MockRender";
 
 export class BindInRender extends React.Component {
   constructor(props) {
@@ -17,7 +11,7 @@ export class BindInRender extends React.Component {
   }
 
   handleClick() {
-    this.setState(state => state.count + 1);
+    this.setState(state => ({ count: state.count + 1 }));
   }
 
   render() {
@@ -38,8 +32,26 @@ export class BindInConstructor extends React.Component {
   }
 
   handleClick() {
-    this.setState(state => state.count + 1);
+    this.setState(state => ({ count: state.count + 1 }));
   }
+
+  render() {
+    const { onRender } = this.props;
+    return <MockRender onRender={onRender} onClick={this.handleClick} />;
+  }
+}
+
+export class ArrowFunction extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0
+    };
+  }
+
+  handleClick = () => {
+    this.setState(state => ({ count: state.count + 1 }));
+  };
 
   render() {
     const { onRender } = this.props;
@@ -53,12 +65,11 @@ export class RenderChildren extends React.Component {
     this.state = {
       count: 0
     };
-    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
-    this.setState(state => state.count + 1);
-  }
+  handleClick = () => {
+    this.setState(state => ({ count: state.count + 1 }));
+  };
 
   render() {
     const { onRender } = this.props;
@@ -66,7 +77,11 @@ export class RenderChildren extends React.Component {
   }
 }
 
-export class ArrowFunction extends React.Component {
+function Parent({ onClick, children }) {
+  return <>{children}</>;
+}
+
+export class RenderChildrenInParent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -75,12 +90,45 @@ export class ArrowFunction extends React.Component {
   }
 
   handleClick = () => {
-    this.setState(state => state.count + 1);
+    this.setState(state => ({ count: state.count + 1 }));
   };
 
   render() {
     const { onRender } = this.props;
-    return <MockRender onRender={onRender} onClick={this.handleClick} />;
+    const { count } = this.state;
+    return (
+      <Parent count={count}>
+        <MockRender onRender={onRender} onClick={this.handleClick} />
+      </Parent>
+    );
+  }
+}
+
+export class RenderChildrenInParentNewProps extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0
+    };
+  }
+
+  handleClick = () => {
+    this.setState(state => ({ count: state.count + 1 }));
+  };
+
+  render() {
+    const { onRender } = this.props;
+    const { count } = this.state;
+
+    return (
+      <Parent count={count}>
+        <MockRender
+          onRender={onRender}
+          onClick={this.handleClick}
+          count={count}
+        />
+      </Parent>
+    );
   }
 }
 
