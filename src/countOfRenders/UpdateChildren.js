@@ -77,9 +77,9 @@ export class RenderChildren extends React.Component {
   }
 }
 
-function Parent({ onClick, children }) {
+const Parent = React.memo(function Parent({ onClick, children }) {
   return <>{children}</>;
-}
+});
 
 export class RenderChildrenInParent extends React.Component {
   constructor(props) {
@@ -121,7 +121,7 @@ export class RenderChildrenInParentNewProps extends React.Component {
     const { count } = this.state;
 
     return (
-      <Parent count={count}>
+      <Parent>
         <MockRender
           onRender={onRender}
           onClick={this.handleClick}
