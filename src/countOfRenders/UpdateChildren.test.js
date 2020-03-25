@@ -17,31 +17,31 @@ import {
 test("BindInRender", () => {
   const onRender = jest.fn();
   const { getByRole } = render(<BindInRender onRender={onRender} />);
-  expect(onRender.mock.calls.length).toBe(1);
+  expect(onRender).toHaveBeenCalledTimes(1);
 
   fireEvent.click(getByRole("button"));
 
-  expect(onRender.mock.calls.length).toBe(2);
+  expect(onRender).toHaveBeenCalledTimes(2);
 });
 
 test("BindInConstructor", () => {
   const onRender = jest.fn();
   const { getByRole } = render(<BindInConstructor onRender={onRender} />);
-  expect(onRender.mock.calls.length).toBe(1);
+  expect(onRender).toHaveBeenCalledTimes(1);
 
   fireEvent.click(getByRole("button"));
 
-  expect(onRender.mock.calls.length).toBe(1);
+  expect(onRender).toHaveBeenCalledTimes(1);
 });
 
 test("ArrowFunction", () => {
   const onRender = jest.fn();
   const { getByRole } = render(<ArrowFunction onRender={onRender} />);
-  expect(onRender.mock.calls.length).toBe(1);
+  expect(onRender).toHaveBeenCalledTimes(1);
 
   fireEvent.click(getByRole("button"));
 
-  expect(onRender.mock.calls.length).toBe(1);
+  expect(onRender).toHaveBeenCalledTimes(1);
 });
 
 test("RenderChildren", () => {
@@ -53,21 +53,21 @@ test("RenderChildren", () => {
       )}
     </RenderChildren>
   );
-  expect(onRender.mock.calls.length).toBe(1);
+  expect(onRender).toHaveBeenCalledTimes(1);
 
   fireEvent.click(getByRole("button"));
 
-  expect(onRender.mock.calls.length).toBe(1);
+  expect(onRender).toHaveBeenCalledTimes(1);
 });
 
 test("RenderChildrenInParent", () => {
   const onRender = jest.fn();
   const { getByRole } = render(<RenderChildrenInParent onRender={onRender} />);
-  expect(onRender.mock.calls.length).toBe(1);
+  expect(onRender).toHaveBeenCalledTimes(1);
 
   fireEvent.click(getByRole("button"));
 
-  expect(onRender.mock.calls.length).toBe(1);
+  expect(onRender).toHaveBeenCalledTimes(1);
 });
 
 test("RenderChildrenInParentNewProps", () => {
@@ -75,21 +75,21 @@ test("RenderChildrenInParentNewProps", () => {
   const { getByRole } = render(
     <RenderChildrenInParentNewProps onRender={onRender} />
   );
-  expect(onRender.mock.calls.length).toBe(1);
+  expect(onRender).toHaveBeenCalledTimes(1);
 
   fireEvent.click(getByRole("button"));
 
-  expect(onRender.mock.calls.length).toBe(2);
+  expect(onRender).toHaveBeenCalledTimes(2);
 });
 
 test("FunctionComponent", () => {
   const onRender = jest.fn();
   const { getByRole } = render(<FunctionComponent onRender={onRender} />);
-  expect(onRender.mock.calls.length).toBe(1);
+  expect(onRender).toHaveBeenCalledTimes(1);
 
   fireEvent.click(getByRole("button"));
 
-  expect(onRender.mock.calls.length).toBe(2);
+  expect(onRender).toHaveBeenCalledTimes(2);
 });
 
 test("FunctionComponentWithCallback", () => {
@@ -97,11 +97,11 @@ test("FunctionComponentWithCallback", () => {
   const { getByRole } = render(
     <FunctionComponentWithCallback onRender={onRender} />
   );
-  expect(onRender.mock.calls.length).toBe(1);
+  expect(onRender).toHaveBeenCalledTimes(1);
 
   fireEvent.click(getByRole("button"));
 
-  expect(onRender.mock.calls.length).toBe(2);
+  expect(onRender).toHaveBeenCalledTimes(2);
 });
 
 test("FunctionComponentWithCallbackPrevState", () => {
@@ -109,9 +109,9 @@ test("FunctionComponentWithCallbackPrevState", () => {
   const { getByRole } = render(
     <FunctionComponentWithCallbackPrevState onRender={onRender} />
   );
-  expect(onRender.mock.calls.length).toBe(1);
+  expect(onRender).toHaveBeenCalledTimes(1);
 
   fireEvent.click(getByRole("button"));
 
-  expect(onRender.mock.calls.length).toBe(1);
+  expect(onRender).toHaveBeenCalledTimes(1);
 });

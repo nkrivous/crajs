@@ -27,7 +27,7 @@ test("UpdateClassStateInLifeCycle", () => {
   );
 
   expect(getByTestId("name").textContent).toBe("C");
-  expect(onRender.mock.calls.length).toBe(2);
+  expect(onRender).toHaveBeenCalledTimes(2);
   expect(getRenderOrder(onRender.mock.calls)).toBe("A C");
 });
 
@@ -39,7 +39,7 @@ test("UpdateClassStateInReactHandler", () => {
 
   fireEvent.click(getByRole("button"));
 
-  expect(onRender.mock.calls.length).toBe(2);
+  expect(onRender).toHaveBeenCalledTimes(2);
   expect(getRenderOrder(onRender.mock.calls)).toBe("A C");
 });
 
@@ -47,7 +47,7 @@ test("UpdateClassStateInLifeCyclePromise", async () => {
   const onRender = jest.fn();
   await render(<UpdateClassStateInLifeCyclePromise onRender={onRender} />);
 
-  expect(onRender.mock.calls.length).toBe(3);
+  expect(onRender).toHaveBeenCalledTimes(3);
   expect(getRenderOrder(onRender.mock.calls)).toBe("A B C");
 });
 
@@ -59,7 +59,7 @@ test("UpdateClassStateInPromise", async () => {
 
   await fireEvent.click(getByRole("button"));
 
-  expect(onRender.mock.calls.length).toBe(4);
+  expect(onRender).toHaveBeenCalledTimes(4);
   expect(getRenderOrder(onRender.mock.calls)).toBe("A G D E");
 });
 
@@ -75,7 +75,7 @@ test("UpdateClassStateInAsyncFn", async () => {
   await fireEvent.click(getByRole("button"));
 
   expect(getRenderOrder(onRender.mock.calls)).toBe("A C D E F G");
-  expect(onRenderCallback.mock.calls.length).toBe(6);
+  expect(onRenderCallback).toHaveBeenCalledTimes(6);
 });
 
 test("UpdateClassStateInPromiseBatch", async () => {
@@ -90,7 +90,7 @@ test("UpdateClassStateInPromiseBatch", async () => {
   await fireEvent.click(getByRole("button"));
 
   expect(getRenderOrder(onRender.mock.calls)).toBe("A C E");
-  expect(onRenderCallback.mock.calls.length).toBe(3);
+  expect(onRenderCallback).toHaveBeenCalledTimes(3);
 });
 
 test("UpdateClassStateInAsyncFnBatch", async () => {
@@ -105,7 +105,7 @@ test("UpdateClassStateInAsyncFnBatch", async () => {
   await fireEvent.click(getByRole("button"));
 
   expect(getRenderOrder(onRender.mock.calls)).toBe("A C E");
-  expect(onRenderCallback.mock.calls.length).toBe(3);
+  expect(onRenderCallback).toHaveBeenCalledTimes(3);
 });
 
 test("UpdateFunctionInAsyncFn", async () => {
@@ -120,5 +120,5 @@ test("UpdateFunctionInAsyncFn", async () => {
   await fireEvent.click(getByRole("button"));
 
   expect(getRenderOrder(onRender.mock.calls)).toBe("A C E");
-  expect(onRenderCallback.mock.calls.length).toBe(3);
+  expect(onRenderCallback).toHaveBeenCalledTimes(3);
 });
